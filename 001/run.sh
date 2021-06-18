@@ -1,0 +1,1 @@
+regula run tf --format table
