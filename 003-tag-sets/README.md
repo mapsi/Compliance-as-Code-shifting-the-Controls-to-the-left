@@ -8,10 +8,6 @@ We will be implementing an internal compliance rule, ensuring that the correct t
 
 
 
-
-
-
-
 ## Custom Rule
 
 We will begin by implementing two custom rules.
@@ -54,13 +50,7 @@ taggable_resource_types = {
   "aws_cloudwatch_log_group",
   "aws_cloudwatch_metric_alarm",
   "aws_cognito_user_pool",
-  "aws_config_config_rule",
-  "aws_customer_gateway",
-  "aws_db_event_subscription",
   "aws_db_instance",
-  "aws_db_option_group",
-  "aws_db_parameter_group",
-  "aws_db_subnet_group",
   "aws_dynamodb_table",
   "aws_ebs_volume",
   "aws_eip",
@@ -71,24 +61,10 @@ taggable_resource_types = {
   "aws_kms_key",
   "aws_lambda_function",
   "aws_lb",
-  "aws_lb_target_group",
-  "aws_network_acl",
-  "aws_network_interface",
-  "aws_redshift_cluster",
-  "aws_redshift_parameter_group",
-  "aws_redshift_subnet_group",
-  "aws_route53_health_check",
-  "aws_route53_zone",
-  "aws_route_table",
   "aws_s3_bucket",
   "aws_security_group",
-  "aws_sfn_state_machine",
   "aws_subnet",
-  "aws_vpc",
-  "aws_vpc",
-  "aws_vpc_dhcp_options",
-  "aws_vpn_connection",
-  "aws_vpn_gateway",
+  "aws_vpc"
 }
 
 # Ensure the resource we are looking at supports tags
@@ -99,13 +75,8 @@ taggable_resources[id] = resource {
   resource = resources[id]
 }
 
-
-
-
 # Define which tags we require to be applied
 required_tags = { "Team", "Confidentiality"}
-
-
 
 
 policy[r] {
@@ -160,7 +131,11 @@ In this rule, we actually provide some information from the resource, to describ
 
 Open up the [s3_bucket](tf/s3_bucket.tf) Terraform file. You should see that there is a tag implement for `Confidentiality`. 
 
+![After fixing the S3 bucket](../img/003-bucket-0.png)
+
 Copy this to the next line and rename it `Team`, and apply the value `DevOps-Playground`.
+
+![After fixing the S3 bucket](../img/003-bucket-1.png)
 
 Now re-run regula, which should give the following output:
 
@@ -170,7 +145,11 @@ Now re-run regula, which should give the following output:
 
 Open up the [dynamo_db_table](tf/dynamo_db_table.tf) Terraform file. You should see that there is a tag implement for `Team`. 
 
+![After fixing the S3 bucket](../img/003-table-0.png)
+
 Copy this to the next line and rename it `Confidentiality`, and apply the value `Private`.
+
+![After fixing the S3 bucket](../img/003-bucket-1.png)
 
 Now re-run regula, which should give the following output:
 

@@ -20,6 +20,8 @@ Terraform Resources:
 * [EBS volumes](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_volume)
 * [IAM policies](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy)
 
+[Click here](001) to get started in the first exercise.
+
 ## 002 - HIPAA S3 buckets 
 
 In this exercise, we will be looking at S3 buckets, implementing real world compliance rules. S3 is AWS' simple storage service, which is an object-based storage service. Objects are stored in `buckets`.
@@ -35,6 +37,8 @@ Terraform Resources:
 
 * [S3 Buckets](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket)
 
+[Click here](002-hipaa-s3) to get started in the second exercise.
+
 ## 003 - Tag Sets
 
 This exercise will focus on tagging. Tags are a way of including metadata with various AWS resources. It is common for large organisations to have tagging standards which include various pieces of business information such as:
@@ -48,3 +52,5 @@ Terraform Resources:
 
 * [S3 Buckets](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket)
 * [EC2 Instances](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ec2_instance)
+
+[Click here](003-tag-sets) to get started in the third exercise.

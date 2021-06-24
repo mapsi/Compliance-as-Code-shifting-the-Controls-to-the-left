@@ -1,0 +1,18 @@
+pipeline {
+    agent {
+        dockerfile true
+    }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'mkdir -p reports'
+                sh 'regula run -u  --include 002/policy/s3_bucket_prefix.rego --format junit 002/tf > reports/002.xml'
+            }
+        }
+    }
+    post {
+        always {
+            junit 'reports/*.xml'
+        }
+    }
+}
