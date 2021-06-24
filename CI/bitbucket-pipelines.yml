@@ -1,0 +1,16 @@
+image: fugue/regula
+   
+pipelines:
+  default:
+    - step:
+        name: Execute built in tests
+        script:
+          - cd 001 && regula run --format junit tf > ../001.xml
+    - step:
+        name: Execute S3 tests
+        script:
+          - cd 002-hipaa-s3 && regula run --format junit -u --include policy tf > ../002.xml
+    - step:
+        name: Execute Tag tests
+        script:
+          - cd 003-tag-sets && regula run --format junit -u --include policy tf > ../003.xml
