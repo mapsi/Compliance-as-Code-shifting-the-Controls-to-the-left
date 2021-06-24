@@ -29,7 +29,7 @@ We will begin by implementing two custom rules.
 | Rule ID | Rule Description | Rule Scope |
 | ------- | ---------------- | ---------- |
 | DPG_HIPAA_S3_ACL | S3 buckets must have a private ACL enabled | aws_s3_buckets - access controls |
-| DPG_HIPAA_S3_VERSIONING | S3 buckets must have  versioning enabled | aws_s3_buckets - encryption |
+| DPG_HIPAA_S3_VERSIONING | S3 buckets must have  versioning enabled | aws_s3_buckets - versioning |
 
 ### Creating the ACL rule
 
@@ -152,13 +152,12 @@ Which should give the following output:
 
 ### Versioning
 
-[AWS supports enabling versioning](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html) on S3 buckets. This means that when an object is replaced on a bucket, the old version of this object is retained.
+[AWS supports enabling versioning](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html) on S3 buckets. This means that when an object is replaced on a bucket, the old version of this object is retained.
 
 #### Enabling via Terraform
 
-Teraform supports creating multiple encryption rules for a given S3 bucket, via the `server_side_encryption_configuration` argument.
 
-From the [Terraform documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#server_side_encryption_configuration):
+From the [Terraform documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#versioning):
 
 ```
 The versioning object supports the following:
@@ -166,8 +165,6 @@ The versioning object supports the following:
 enabled - (Optional) Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
 mfa_delete - (Optional) Enable MFA delete for either Change the versioning state of your bucket or Permanently delete an object version. Default is false. This cannot be used to toggle this setting but is available to allow managed buckets to reflect the state in AWS
 ```
-
-#### Enable encryption on our bucket
 
 To enable versioning, attach the following parameters to the s3_bucket resource:
 
